@@ -1,0 +1,2 @@
+class RegularController < ApplicationController
+end
