@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'top/index'
+  root "top#index"
+  get "about" => "top#about", as:"about"
   
   resources :members
   resources :orders
@@ -7,5 +8,6 @@ Rails.application.routes.draw do
   resources :regulars
   resources :categories
   resources :orderitems
-  
+  resource :session, only: [:create, :destroy]
+
 end

@@ -1,0 +1,18 @@
+<table class="ite">
+  <tr>
+    <th width="150">商品名</th>
+    <td><%= @item.item_name %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @item.price %></td>
+  </tr>
+  <tr>
+    <th>個数</th>
+    <td><%= @item.item_quantity %></td>
+  </tr>
+  <tr>
+    <th>在庫</th>
+    <td><%= @item.disable? ? "○" : "－" %></td>
+  </tr>
+  </table>

@@ -1,0 +1,22 @@
+<table class="attr">
+    <tr>
+        <th><%= form.label :"商品名" %></th>
+        <td><%= form.text_field :item_name, size: 16 %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"値段" %></th>
+        <td><%= form.text_field :price, size: 8 %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"個数" %></th>
+        <td><%= form.text_field :item_quantity, size: 8 %></td>
+    </tr>
+    <tr>
+      <th><%= Item.human_attribute_name(:disable) %></th>
+      <td>
+        <%= form.check_box :disable %>
+        <%= form.label :"在庫" %>
+      </td>
+    </tr>
+    
+</table>

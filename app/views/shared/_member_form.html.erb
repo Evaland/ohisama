@@ -1,0 +1,37 @@
+table class="attr">
+    <tr>
+        <th><%= form.label :"ユーザー名" %></th>
+        <td><%= form.text_field :name, size: 16 %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"住所" %></th>
+        <td><%= form.text_field :adress, size: 30 %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"ユーザーID" %></th>
+        <td><%= form.text_field :user_id, size: 16 %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"ユーザーPW"%></th>
+        <td><%= form.text_field :user_password, size: 16 %></td>
+    </tr>
+    <tr>
+    <th><%= Member.human_attribute_name(:group) %></th>
+    <td>
+      <%= form.radio_button :group, 1 %>
+      <%= form.label :"グループ１" %>
+      <%= form.radio_button :group, 2 %>
+      <%= form.label :"グループ２" %>
+      <%= form.radio_button :group, 3 %>
+      <%= form.label :"グループ３" %>
+    </td>
+    </tr>
+    <tr>
+      <th><%= Member.human_attribute_name(:regular_member) %></th>
+      <td>
+        <%= form.check_box :regular_member %>
+        <%= form.label :定期便会員 %>
+      </td>
+    </tr>
+    
+</table>
