@@ -1,4 +1,12 @@
-<%= render "shared/login_form" %>
+<%= render "shared/login_form" unless current_member %>
+<% if current_member %>
+  <ul class="account-menu">
+    <%= current_member.name + "さん" %>
+    <%= menu_link_to "ログアウト", :session,
+          method: :delete, data: { confirm: "ログアウトしますか？" } %>
+  </ul>
+<% end %>
+
 <nav class="menubar">
   <ul>
     <%= menu_link_to "TOP", :root %>

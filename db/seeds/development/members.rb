@@ -5,8 +5,9 @@ names = ["sato", "suzuki", "takahasi"]
       name: "#{fnames[idx]}",
       adress: "川崎市多摩区",
       user_id: "#{names[idx]}1234",
-      user_password: "ohisama!",
       group: [1, 2, 3][idx % 3],
-      regular_member: false
+      regular_member: false,
+      password: "ohisama!",
+      password_confirmation: "ohisama!"
     )
   end
