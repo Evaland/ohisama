@@ -1,14 +1,16 @@
-<%= render "shared/login_form" unless current_member %>
+<%= render "shared/admin_login_form" unless current_member %>
 <% if current_member %>
   <ul class="account-menu">
-    <%= current_member.name + "さん" %>
+    <%= current_member.name %>
     <%= menu_link_to "ログアウト", :session,
           method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>
 <% end %>
-
-
 <%=
+  if controller.kind_of?(Admin::Base)
+    render "shared/admin_menubar"
+  else
     render "shared/menubar"
+  end
 %>
 

@@ -1,0 +1,16 @@
+<h2>管理者ログイン</h2>
+<% if flash.alert %><p class="alert"><%= flash.alert %></p><% end %>
+<%= form_tag :session, id: "admin-login-form" do %>
+
+  <div>
+    <label>管理者ID：</label>
+    <input type="text" name="user_id", value="admin">
+  </div>
+  <div>
+    <label>パスワード：</label>
+    <input type="password" name="password">
+  </div>
+  <div>
+    <input type="submit" value="ログイン">
+  </div>
+<% end %>

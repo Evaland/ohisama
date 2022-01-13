@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
     t.string "user_id", null: false
     t.integer "group", null: false
     t.boolean "regular_member", default: false, null: false
+    t.boolean "admin_member", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -47,16 +48,17 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
   create_table "orderitems", force: :cascade do |t|
     t.boolean "orderitem_cancel", null: false
     t.integer "orderitem_quantity", null: false
-    t.integer "order_id", null: false
-    t.integer "item_id", null: false
+    t.integer "order_id"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_orderitems_on_item_id"
+    t.index ["order_id"], name: "index_orderitems_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "member_id"
     t.integer "orderitem_id"
-    t.integer "category_namename", null: false
     t.integer "date", null: false
     t.integer "time_limit", null: false
     t.integer "status", null: false
@@ -69,11 +71,12 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
 
   create_table "regulars", force: :cascade do |t|
     t.integer "member_id"
-    t.integer "item_id", null: false
+    t.integer "item_id"
     t.integer "regular_quantity", null: false
     t.datetime "update_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_regulars_on_item_id"
     t.index ["member_id"], name: "index_regulars_on_member_id"
   end
 
