@@ -9,6 +9,11 @@
 
 
 <%=
+  if controller.kind_of?(Admin::Base)
+    render "shared/admin_menubar"
+  else
     render "shared/menubar"
+  end
 %>
+
 

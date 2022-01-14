@@ -1,7 +1,13 @@
 class Admin::ItemsController < Admin::Base
+    before_action :admin_login_required
     
     def index
         @items = Item.order("id")
+    end
+
+    def search
+        @items = Item.search(params[:q])
+        render "index"
     end
 
     def show

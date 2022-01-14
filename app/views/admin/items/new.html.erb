@@ -1,0 +1,7 @@
+<% @page_title = "商品新規作成" %>
+<h1><%= @page_title %></h1>
+
+<%= form_for [:admin,@item] do |form| %>
+    <%= render "shared/item_form", form: form %>
+    <div><%= form.submit "作成"%></div>
+  <% end %>

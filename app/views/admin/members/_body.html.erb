@@ -1,0 +1,26 @@
+<table class="attr">
+  <tr>
+    <th width="150">ユーザー名</th>
+    <td><%= @member.name %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @member.adress %></td>
+  </tr>
+  <tr>
+    <th>ユーザーID</th>
+    <td><%= @member.user_id %></td>
+  </tr>
+  <tr>
+    <th>ユーザーPW</th>
+    <td><%= @member.password %></td>
+  </tr>
+  <tr>
+    <th>グループ</th>
+    <td><%= @member.group== 1 ? "大島" : "八王子" %></td>
+  </tr>
+  <tr>
+    <th>定期便会員</th>
+    <td><%= @member.regular_member? ? "○" : "－" %></td>
+  </tr>
+</table>

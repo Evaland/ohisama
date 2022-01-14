@@ -1,4 +1,5 @@
 class Admin::MembersController < Admin::Base
+    before_action :admin_login_required
 
     def index
         @members = Member.order("id")
@@ -32,7 +33,7 @@ class Admin::MembersController < Admin::Base
         @member.assign_attributes(params[:member])
         if @member.save
           # 保存が成功したらshowにリダイレクトする。フラッシュ値を設定する。
-          redirect_to @member, notice: "会員を更新しました。"
+          redirect_to @member, notice: "マイページを更新しました。"
         else
           # エラー発生時はeditに戻る
           render "edit"

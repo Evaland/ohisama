@@ -1,9 +1,11 @@
 <nav class="menubar" id="admin-menubar">
   <ul>
+  <% if current_member&.admin_member? %>
     <%= menu_link_to "管理TOP", :admin_root %>
     <%= menu_link_to "会員管理", :admin_members %>
     <%= menu_link_to "商品管理", :admin_items %>
     <%= menu_link_to "定期便管理", :admin_regulars %>
     <%= menu_link_to "配達ステータス管理", :admin_orders %>
+<% end %>
   </ul>
 </nav>

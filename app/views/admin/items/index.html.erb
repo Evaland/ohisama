@@ -1,0 +1,33 @@
+<% @page_title = "商品一覧" %>
+<h1><%= @page_title %></h1>
+<div class="toolbar"><%= link_to "商品の新規登録", :new_admin_item %></div>
+<% if @items.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>値段</th>
+        <th>商品数</th>
+        <th>在庫</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= link_to item.item_name, [:admin,item] %></td>
+          <td><%= item.price %></td>
+          <td><%= item.item_quantity %></td>
+          <td><%= item.disable? ? "○" : "－" %></td>
+          <td>
+            <%= link_to "編集", [:edit,:admin, item] %> |
+            <%= link_to "削除", [:admin,item], method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>商品情報がありません。</p>
+<% end %>

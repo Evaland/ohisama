@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
 
     def index
-        @members = Member.order("id")
+        @member=Member.find_by(id: session[:member_id])
     end
 
     def show
