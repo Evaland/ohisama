@@ -1,2 +1,19 @@
-<% @page_title = "商品検索" %>
-<h1><%= @page_title %></h1>
+
+<% if @categories.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>カテゴリー検索</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= link_to category.category_name, category %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>カテゴリー情報がありません。</p>
+<% end %>

@@ -1,6 +1,13 @@
 <% @page_title = "商品一覧" %>
 <h1><%= @page_title %></h1>
-<div class="toolbar"><%= link_to "商品の新規登録", :new_item %></div>
+
+<%= form_tag :search_items, method: :get, class: "search" do %>
+  <%= text_field_tag "q", params[:q] %>
+  <%= submit_tag "検索" %>
+<% end %>
+
+<%= menu_link_to "カテゴリー検索", :categories %>
+
 <% if @items.present? %>
   <table class="list">
     <thead>
@@ -9,6 +16,7 @@
         <th>値段</th>
         <th>商品数</th>
         <th>在庫</th>
+        <th>ジャンル</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -19,10 +27,9 @@
           <td><%= item.price %></td>
           <td><%= item.item_quantity %></td>
           <td><%= item.disable? ? "○" : "－" %></td>
+          <td><%= item.author_category&.category_name %></td>
           <td>
-            <%= link_to "編集", [:edit, item] %> |
-            <%= link_to "削除", item, method: :delete,
-              data: { confirm: "本当に削除しますか?" } %>
+            <%= link_to "編集", [:edit, item] %>
           </td>
         </tr>
       <% end %>

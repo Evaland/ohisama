@@ -18,5 +18,13 @@
         <%= form.label :"在庫" %>
       </td>
     </tr>
+    <tr>
+  <th>カテゴリー</th>
+  <td>
+  <% Item.all.each do |category| %>
+      <%= form.check_box :new_category_ids, { multiple: true }, category.id, "" %><%= category.category_name %>&emsp;
+  <% end %>
+  </td>
+  </tr>
     
 </table>

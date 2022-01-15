@@ -15,4 +15,8 @@
     <th>在庫</th>
     <td><%= @item.disable? ? "○" : "－" %></td>
   </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td><%= @item.author_category&.category_name %></td>
+  </tr>
   </table>

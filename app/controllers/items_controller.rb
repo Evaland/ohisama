@@ -2,12 +2,19 @@ class ItemsController < ApplicationController
     
     def index
         @items = Item.order("id")
+        @categories = Category.order("id")
     end
 
     def show
         @item = Item.find(params[:id])
+        @category = Category.find(params[:id])
     end
 
+    def search
+        @items = Item.search(params[:q])
+        render "index"
+    end
+    
     def new
         @item = Item.new
     end

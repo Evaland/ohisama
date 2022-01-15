@@ -3,7 +3,10 @@ Rails.application.routes.draw do
     root 'top#index'
     resources :members
     resources :orders
-    resources :items
+    resources :items do
+      get "search", on: :collection
+      resources :categories
+    end
     resources :regulars
     resource :session, only: [:create, :destroy]
   end
@@ -12,9 +15,12 @@ Rails.application.routes.draw do
   
   resources :members
   resources :orders
-  resources :items
-  resources :regulars
+  resources :items do
+    get "search", on: :collection
+    resources :categories
+  end
   resources :categories
+  resources :regulars
   resources :orderitems
   resource :session, only: [:create, :destroy]
 
