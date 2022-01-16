@@ -22,7 +22,7 @@
   <th>カテゴリー</th>
   <td>
   <% Item.all.each do |category| %>
-      <%= form.check_box :new_category_ids, { multiple: true }, category.id, "" %><%= category.category_name %>&emsp;
+      <%= form.check_box :new_category_ids, { multiple: true }, category.id, "" %><%= category.author_name %>&emsp;
   <% end %>
   </td>
   </tr>

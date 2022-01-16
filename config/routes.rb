@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get "search", on: :collection
       resources :categories
     end
+    resources :categories
     resources :regulars
     resource :session, only: [:create, :destroy]
   end

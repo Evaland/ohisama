@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
     end
     helper_method :current_member
 
+    private def current_cart
+    　#セッションから取得したcart_idを基にcartテーブルからユーザー情報を取得
+    　　@current_cart = Order.find_by(id: session[:order_id])
+    　#存在しない場合cartを作成
+    　　@current_cart = Order.create unless @current_cart
+    　#取得したuser情報よりIDを取得してセッションに設定
+    　　session[:order_id] = @current_cart.id
+    　#cart情報を返却
+    　　@current_cart
+    end
+    helper_method :current_cart
+
     class LoginRequired < StandardError; end
     class Forbidden < StandardError; end
     

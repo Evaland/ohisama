@@ -7,6 +7,7 @@
   <%= submit_tag "検索" %>
 <% end %>
 
+<%= menu_link_to "カテゴリー検索", :admin_categories %>
 <% if @items.present? %>
   <table class="list">
     <thead>
@@ -22,14 +23,14 @@
     <tbody>
       <% @items.each do |item| %>
         <tr>
-          <td><%= link_to item.item_name, item %></td>
+          <td><%= link_to item.item_name, [:admin,item] %></td>
           <td><%= item.price %></td>
           <td><%= item.item_quantity %></td>
           <td><%= item.disable? ? "○" : "－" %></td>
           <td><%= item.author_category&.category_name %></td>
           <td>
-            <%= link_to "編集", [:edit, item] %> |
-            <%= link_to "削除", item, method: :delete,
+            <%= link_to "編集", [:edit,:admin, item] %> |
+            <%= link_to "削除", [:admin,item], method: :delete,
               data: { confirm: "本当に削除しますか?" } %>
           </td>
         </tr>

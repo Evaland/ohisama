@@ -3,6 +3,7 @@
     <%= submit_tag "検索" %>
   <% end %>
 
+<div class="toolbar"><%= link_to "商品の新規登録", :new_admin_item %></div>  
 <% if @items.present? %>
 <%= @item.author_category&.category_name %>
   <table class="list">
@@ -26,6 +27,8 @@
           <td><%= item.author_category&.category_name %></td>
           <td>
             <%= link_to "編集", [:edit, item] %>
+            <%= link_to "削除", [:admin,item], method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
           </td>
         </tr>
       <% end %>

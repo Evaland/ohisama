@@ -1,4 +1,6 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::Base
+    before_action :admin_login_required
+
     def index
         @categories = Category.order("id")
     end

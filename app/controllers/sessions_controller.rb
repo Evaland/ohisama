@@ -14,7 +14,12 @@ class SessionsController < ApplicationController
     end
   
     def destroy
-      session.delete(:member_id)
-      redirect_to :root
+      if current_member&.admin_member?
+        session.delete(:member_id)
+        redirect_to :admin_root
+      else
+        session.delete(:member_id)
+        redirect_to :root
+      end
     end
   end
