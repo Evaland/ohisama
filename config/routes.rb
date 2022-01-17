@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   end
   root "top#index"
   get "about" => "top#about", as:"about"
-  
+  post '/add_item' => 'orderitems#add_item'
+
   resources :members
   resources :orders
   resources :items do

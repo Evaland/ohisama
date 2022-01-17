@@ -16,9 +16,4 @@ class Item < ApplicationRecord
         end
     end
 
-    before_save do
-        self.category_ids = new_category_ids
-    end
-
-
 end

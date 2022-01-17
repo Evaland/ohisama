@@ -19,10 +19,10 @@
       </td>
     </tr>
     <tr>
-  <th>カテゴリー</th>
+  <th><%= form.label :"カテゴリー" %></th>
   <td>
-  <% Item.all.each do |category| %>
-      <%= form.check_box :new_category_ids, { multiple: true }, category.id, "" %><%= category.author_name %>&emsp;
+  <% Category.all.each do |category| %>
+      <%= form.radio_button :category_id, category.id %><%= category.category_name %>&emsp;
   <% end %>
   </td>
   </tr>
