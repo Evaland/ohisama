@@ -12,10 +12,9 @@
         <td><%= form.text_field :item_quantity, size: 8 %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:disable) %></th>
+      <th><%= form.label :"在庫" %></th>
       <td>
         <%= form.check_box :disable %>
-        <%= form.label :"在庫" %>
       </td>
     </tr>
     <tr>

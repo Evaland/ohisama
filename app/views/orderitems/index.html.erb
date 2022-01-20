@@ -1,0 +1,5 @@
+<%= form_tag :my_cart, method: :get, class: "search" do %>
+    <h2>カート内アイテム</h2>
+    <%= render partial: "orderitems/cart_item", collection: @cart_items, as: "cart_item"%>
+    <h2><%= "合計：#{@total}円" %></h2>
+  <% end %>

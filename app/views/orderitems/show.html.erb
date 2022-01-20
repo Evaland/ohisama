@@ -1,2 +1,30 @@
-% @page_title = "ショッピングカート" %>
+<% @page_title = "ショッピングカート" %>
 <h1><%= @page_title %></h1>
+
+<% if @orderitems.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>値段</th>
+        <th>個数</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderitems.each do |orderitem| %>
+        <tr>
+          <td><%= link_to @item.item_name, item %></td>
+          <td><%= orderitem.order_price %></td>
+          <td><%= orderitem.orderitem_quantity %></td>
+          <td>
+            <%= link_to "カートに追加する", [:show, orderitem] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p>商品情報がありません。</p>
+<% end %>

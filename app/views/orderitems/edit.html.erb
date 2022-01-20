@@ -1,0 +1,10 @@
+<% @page_title = "カート商品の編集" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "マイページの詳細に戻る", @cart %></div>
+
+<%= form_for @orderitem do |form| %>
+  <%= render "shared/orderitem_form", form: form %>
+  <div><%= form.submit"更新"%></div>
+<% end %>

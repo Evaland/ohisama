@@ -1,8 +1,8 @@
 class Orderitem < ApplicationRecord
-    has_many :items, dependent: :destroy
-    has_many :orders, dependent: :destroy
+    belongs_to :item
+    belongs_to :order
 
-    def add_item(item_id)
-        Orderitems.find_or_initialize_by(item_id: item_id)
+    def sum_of_price
+        item.price * orderitem.orderitem_quantity
     end
 end

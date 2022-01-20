@@ -7,6 +7,8 @@ class ItemsController < ApplicationController
 
     def show
         @item = Item.find(params[:id])
+        @orderitem = Orderitem.new(params[:item_id])
+        
     end
 
     def search
@@ -45,6 +47,14 @@ class ItemsController < ApplicationController
         end
     end
 
+    def add_item
+        @orderitem = Orderitem.new(params[:item_id])
+        if  @orderitem.save
+            redirect_to :orders, notice: '商品が追加されました。'
+        else
+            redirect_to :orders, notice: '商品の追加に失敗しました。'
+        end
+    end
     def destroy
         @item = Item.find(params[:id])
         @item.destroy

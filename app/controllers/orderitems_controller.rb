@@ -1,4 +1,5 @@
 class OrderitemsController < ApplicationController
+
     def show
         @orderitems = Item.where(item_id:params[id])
         orderitem.orderitem_quantity = @orderitem.item_quantity
@@ -9,49 +10,38 @@ class OrderitemsController < ApplicationController
             @total_price += orderitem.order_price * orderitem.orderitem_quantity
           end
         end
-    end
+  end
      
-    def create
-        cart = current_cart
-        item = Item.find(params[:item_id])
-        cart_item = cart.add_item(item.id)
-        
-        if(cart_item.order_quantity)
-            cart_item.order_quantity += params[:order_quantity].to_i
-            cart_item.save
-            redirect_to orderitems_path, notice: '個数を追加しました！'
-        else
-            cart_item.order_quantity = params[:order_quantity].to_i
-            cart_item.save
-            redirect_to orderitems_path, notice: '商品を新規追加しました！'
-        end
-        
-    end
-    
-    def add_item
-        if Orderitem.find_by(item_id: params[:item_id], orderitem_id: current_cart.id).blank?
-          @cart_item = current_cart.orderitems.create(item_id: params[:item_id])
-        end
-        
-        @cart_item.quantity += params[:item][:quantity].to_i
-        @cart_item.save!
-        redirect_to current_cart
-      end
 
-    def destroy
-        @orderitem.destroy
-        redirect_to orderitems_path
-        
+  def new
+    @orderitem = Orderitem.new
+    @item = Item.find_by(id: session[:member_id])
+  end
+
+  # アイテムの追加
+  def create
+    @orderitem = Orderitem.new(params[:id])
+    @item = Item.find_by(id: session[:member_id])
+    @orderitem.orderitem_price = @item.price
+    @orderitem.orderitem_name = @item.item_name
+    if  @orderitem.save
+      redirect_to orders, notice: '商品が追加されました。'
+    else
+      redirect_to orders, notice:'商品の追加に失敗しました。'
     end
-    
-    def delete_item
-        @orderitem.destroy
-        redirect_to orderitems_path
+  end
+
+  # アイテムの更新
+  def update
+    if @cart_item.update(orderitem_quantity: params[:orderitem_quantity].to_i)
+      redirect_to orders, notice: 'カート内の商品が更新されました'
+    else
+      redirect_to orders, notice: 'カート内の商品の更新に失敗しました'
     end
-    
-    private
-    
-    def setup_cart_item
-        @orderitem = Orderitem.find_by(orderitem_id: current_cart.id,item_id: params[:item_id])
-    end
+  end
+
+
+  private def setup_cart_item!
+    @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
+  end
 end

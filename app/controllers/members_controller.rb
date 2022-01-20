@@ -19,8 +19,8 @@ class MembersController < ApplicationController
     def create
         @member = Member.new(params[:member])
         if @member.save
-          # 保存が成功したらshowにリダイレクトする。フラッシュ値を設定する。
-          redirect_to @member, notice: "会員を登録しました。"
+          session[:member_id] = @member.id
+          redirect_to :root, notice: "会員を登録しました。"
         else
           # エラー発生時はnewに戻る
           render "new"

@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
   end
 
   create_table "orderitems", force: :cascade do |t|
-    t.boolean "orderitem_cancel", null: false
+    t.boolean "orderitem_cancel"
     t.integer "orderitem_quantity", null: false
     t.integer "order_id"
     t.integer "item_id"

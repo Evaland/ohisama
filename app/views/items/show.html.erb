@@ -1,6 +1,21 @@
-<% @page_title = "商品一覧　show" %>
+<% @page_title = "商品追加" %>
 <h1><%= @page_title %></h1>
 
-<div class="toolbar"><%= link_to "編集", [:edit, @item] %></div>
 
-<%= render "body" %>
+<%= form_for @orderitem do |form| %>
+    <table class="attr">
+    <tr>
+        <th><%= "商品名" %></th>
+        <td><%= @item.item_name %></td>
+    </tr>
+    <tr>
+        <th><%= "値段" %></th>
+        <td><%= @item.price %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"個数" %></th>
+        <td><%= form.select :orderitem_quantity, *[1..20] %></td>
+    </tr>
+    <div><%= form.submit "追加"%></div>
+    </table>
+<% end %>

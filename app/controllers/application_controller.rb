@@ -5,10 +5,21 @@ class ApplicationController < ActionController::Base
     helper_method :current_member
 
     private def current_cart
-    　　@current_cart = Orderitem.find_by(id: session[:orderitem_id])
-    　　@current_cart = Orderitem.create unless @current_cart
-    　　session[:orderitem_id] = @current_cart.id
-    　　@current_cart
+        if current_member
+            # ユーザーとカートの紐付け
+            if Order.where(member_id: current_member.id)
+              current_cart = Order.where(member_id: current_member.id)
+            else
+              current_cart = Order.new
+              current_cart.member_id = current_member.id
+              current_cart.save
+            end
+        else
+            # セッションとカートの紐付け
+            current_cart = Order.find_by(id: session[:order_id]) || Order.create
+            session[:order_id] ||= current_cart.id
+        end
+        current_cart
     end
     helper_method :current_cart
 
