@@ -46,8 +46,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
   end
 
   create_table "orderitems", force: :cascade do |t|
-    t.boolean "orderitem_cancel"
-    t.integer "orderitem_quantity", null: false
+    t.integer "orderitem_quantity"
     t.integer "order_id"
     t.integer "item_id"
     t.datetime "created_at", null: false
@@ -59,10 +58,11 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
   create_table "orders", force: :cascade do |t|
     t.integer "member_id"
     t.integer "orderitem_id"
-    t.integer "date", null: false
-    t.integer "time_limit", null: false
-    t.integer "status", null: false
-    t.datetime "order_time", null: false
+    t.integer "date"
+    t.integer "time_limit"
+    t.integer "status"
+    t.datetime "order_time"
+    t.integer "order_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_orders_on_member_id"

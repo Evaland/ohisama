@@ -1,5 +1,5 @@
 <%= form_tag :search_items, method: :get, class: "search" do %>
-    <%= text_field_tag "q", params[:q] %>
+    <%= "商品名検索 " %><%= text_field_tag "q", params[:q] %>
     <%= submit_tag "検索" %>
   <% end %>
 
@@ -10,7 +10,6 @@
       <tr>
         <th>商品名</th>
         <th>値段</th>
-        <th>商品数</th>
         <th>在庫</th>
         <th>ジャンル</th>
         <th>操作</th>
@@ -20,13 +19,10 @@
       <% @items.each do |item| %>
         <tr>
           <td><%= link_to item.item_name, item %></td>
-          <td><%= item.price %></td>
-          <td><%= item.item_quantity %></td>
+          <td><%= item.price %><%= "円" %></td>
           <td><%= item.disable? ? "○" : "－" %></td>
           <td><%= item.author_category&.category_name %></td>
-          <td>
-            <%= link_to "編集", [:edit, item] %>
-          </td>
+          <td><%= button_to 'カートに入れる', item, method: :get %></td>
         </tr>
       <% end %>
     </tbody>

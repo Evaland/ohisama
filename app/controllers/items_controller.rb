@@ -7,8 +7,7 @@ class ItemsController < ApplicationController
 
     def show
         @item = Item.find(params[:id])
-        @orderitem = Orderitem.new(params[:item_id])
-        
+        @order = Order.new()
     end
 
     def search

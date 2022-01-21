@@ -1,5 +1,6 @@
 class TopController < ApplicationController
   def index
+    @items = Item.order("id")
   end
   
   def bad_request

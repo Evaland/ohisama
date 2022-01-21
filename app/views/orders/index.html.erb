@@ -15,8 +15,8 @@
       <% @order.each do |order| %>
         <tr>
           <td><%= order.author_items&.item_name  %></td>
-          <td><%= order.orderitem&.order_price %></td>
-          <td><%= order.orderitem&.orderitem_quantity %></td>
+          <td><%= order.orderitem&.order_price %><%= "円" %></td>
+          <td><%= order.orderitem&.orderitem_quantity %><%= "個" %></td>
           <td>
           <%= button_to '編集', controller: :orderitems, action: :edit %> |
           <%= button_to '商品削除', controller: :order, action: :destroy_item,

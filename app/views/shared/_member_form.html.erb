@@ -1,4 +1,5 @@
-table class="attr">
+<%= render "shared/errors", obj: @member %>
+<table class="attr">
     <tr>
         <th><%= form.label :"ユーザー名" %></th>
         <td><%= form.text_field :name, size: 16 %></td>
@@ -9,16 +10,20 @@ table class="attr">
     </tr>
     <tr>
         <th><%= form.label :"ユーザーID" %></th>
-        <td><%= form.text_field :user_id, size: 16 %></td>
+        <td><%= form.text_field :user_id, size: 24 %></td>
     </tr>
     <tr>
         <th><%= form.label :"ユーザーPW"%></th>
-        <td><%= form.text_field :password, size: 16 %></td>
+        <td><%= form.text_field :password, size: 24 %></td>
+    </tr>
+    <tr>
+        <th><%= form.label :"ユーザーPW(確認)"%></th>
+        <td><%= form.text_field :password_confirmation, size: 24 %></td>
     </tr>
     <tr>
     <th><%= Member.human_attribute_name(:group) %></th>
     <td>
-      <%= form.radio_button :group, 1 %>
+      <%= form.radio_button :group, 1 ,checked: true%>
       <%= form.label :"グループ１" %>
       <%= form.radio_button :group, 2 %>
       <%= form.label :"グループ２" %>

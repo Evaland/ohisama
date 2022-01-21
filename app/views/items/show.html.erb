@@ -2,7 +2,7 @@
 <h1><%= @page_title %></h1>
 
 
-<%= form_for @orderitem do |form| %>
+<%= form_for [current_member, @order] do |form| %>
     <table class="attr">
     <tr>
         <th><%= "商品名" %></th>
@@ -10,11 +10,11 @@
     </tr>
     <tr>
         <th><%= "値段" %></th>
-        <td><%= @item.price %></td>
+        <td><%= @item.price %><%= "円" %></td>
     </tr>
     <tr>
-        <th><%= form.label :"個数" %></th>
-        <td><%= form.select :orderitem_quantity, *[1..20] %></td>
+        <th><%= form.label :order_quantity, "個数" %></th>
+        <td><%= form.select :order_quantity, *[1..5] %><%= "個" %></td>
     </tr>
     <div><%= form.submit "追加"%></div>
     </table>

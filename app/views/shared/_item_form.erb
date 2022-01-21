@@ -1,3 +1,4 @@
+<%= render "shared/errors", obj: @item %>
 <table class="attr">
     <tr>
         <th><%= form.label :"商品名" %></th>
@@ -14,14 +15,14 @@
     <tr>
       <th><%= form.label :"在庫" %></th>
       <td>
-        <%= form.check_box :disable %>
+        <%= form.check_box :disable ,checked: true%>
       </td>
     </tr>
     <tr>
   <th><%= form.label :"カテゴリー" %></th>
   <td>
   <% Category.all.each do |category| %>
-      <%= form.radio_button :category_id, category.id %><%= category.category_name %>&emsp;
+      <%= form.radio_button :category_id, category.id ,checked: true%><%= category.category_name %>&emsp;
   <% end %>
   </td>
   </tr>

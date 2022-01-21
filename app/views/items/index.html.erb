@@ -14,7 +14,6 @@
       <tr>
         <th>商品名</th>
         <th>値段</th>
-        <th>商品数</th>
         <th>在庫</th>
         <th>ジャンル</th>
         <th>操作</th>
@@ -24,11 +23,9 @@
       <% @items.each do |item| %>
         <tr>
           <td><%= item.item_name %></td>
-          <td><%= item.price %></td>
-          <td><%= item.item_quantity %></td>
+          <td><%= item.price %><%= "円" %></td>
           <td><%= item.disable? ? "○" : "－" %></td>
           <td><%= item.author_category&.category_name %></td>
-          <td><%= button_to 'カートに入れる', item, method: :get %></td>
         </tr>
       <% end %>
     </tbody>

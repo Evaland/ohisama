@@ -2,8 +2,27 @@ class Item < ApplicationRecord
     belongs_to :author_regular, class_name: "Regular", foreign_key: "regular_id", optional: true
     belongs_to :author_category, class_name: "Category", foreign_key: "category_id", optional: true
     has_many :orderitems, dependent: :destroy
-    has_many :author_orders, through: :orderitems, source: :order
+    has_many :orders, through: :orderitems
 
+    validates :item_name, presence: true,
+    allow_blank: true,
+    uniqueness: true
+
+    validates :price, presence: true,
+        numericality: {
+          greater_than: 0,
+          less_than: 100000,
+          allow_blank: true
+    }
+
+    validates :item_quantity, presence: true,
+        numericality: {
+          greater_than: 0,
+          less_than: 2000,
+          allow_blank: true
+    }
+
+    validates :disable, presence: true
 
     class << self
         def search(query)

@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   get "about" => "top#about", as:"about"
   post '/add_item' => 'orderitems#add_item'
 
-  resources :members
+  resources :members do 
+    resources :orders
+  end
   resources :orders do
     get '/my_cart' => 'orderitems#my_cart'
     post '/add_item' => 'orderitems#add_item'
