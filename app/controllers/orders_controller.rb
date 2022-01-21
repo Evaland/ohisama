@@ -5,17 +5,22 @@ class OrdersController < ApplicationController
   
     def index
         @order = current_cart
+        @orderitems = Orderitem.order("item_id")
     end
     
     def show
-      @orderitem = Orderitem.new(params[:orderitem])
-      @order = Order.find(params[:id])
+      @order = Order.find(member_id: current_member.id, status:1)
+      @orderitem = Orderitem.order(id)
     end
 
     def create
       @order = current_cart
-      @order.items << Item.find_by(id: params[:member_id].to_i)
-      @orderitem = Orderitem.find_by(orderitem_quantity: @order.order_quantity)
+      @order.items << Item.find_by(id: params[:id].to_i)
+      @orderitem = Orderitem.find(orderitem_quantity)
+      if @orderitem.orderitem_quantity.blank?
+        @orderitem.orderitem_quantity = 0
+      end
+        @orderitem.orderitem_quantity += params[:orderitem_quantity].to_i
       if @orderitem.save
         redirect_to @order, notice: 'カート内に商品が追加されました'
       else

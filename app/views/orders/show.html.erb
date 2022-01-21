@@ -1,7 +1,7 @@
-<% @page_title = "ショッピングカート" %>
+% @page_title = "ショッピングカート" %>
 <h1><%= @page_title %></h1>
 
-<% if @orderitem.present? %>
+<% if @order.present? %>
   <table class="list">
     <thead>
       <tr>
@@ -12,11 +12,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @orderitems.each do |orderitem| %>
+      <% @order.each do |order| %>
         <tr>
-          <td><%= orderitem.author_items&.item_name  %></td>
-          <td><%= orderitem.orderitem&.order_price %><%= "円" %></td>
-          <td><%= orderitem.orderitem&.orderitem_quantity %><%= "個" %></td>
+          <td><%= order.author_items&.item_name  %></td>
+          <td><%= order.orderitem&.order_price %><%= "円" %></td>
+          <td><%= order.orderitem&.orderitem_quantity %><%= "個" %></td>
           <td>
           <%= button_to '編集', controller: :orderitems, action: :edit %> |
           <%= button_to '商品削除', controller: :order, action: :destroy_item,
@@ -28,7 +28,7 @@
       <% end %>
     </tbody>
   </table>
-  <h2><%= "合計：#{100}円" %></h2>
+  <h2><%= "合計：#{@total}円" %></h2>
 
 <% else %>
   <p>カートの中に商品がありません。</p>

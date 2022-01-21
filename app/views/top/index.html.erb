@@ -1,34 +1,37 @@
-<% @page_title = "商品一覧 (ログイン前)" %>
-<h1><%= @page_title %></h1>
-
-<%= form_tag :search_items, method: :get, class: "search" do %>
-  <%= "商品名検索 " %><%= text_field_tag "q", params[:q] %>
-  <%= submit_tag "検索" %>
-<% end %>
-
-
-<% if @items.present? %>
-  <table class="list">
-    <thead>
-      <tr>
-        <th>商品名</th>
-        <th>値段</th>
-        <th>在庫</th>
-        <th>ジャンル</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @items.each do |item| %>
-        <tr>
-          <td><%= item.item_name %></td>
-          <td><%= item.price %><%= "円" %></td>
-          <td><%= item.disable? ? "○" : "－" %></td>
-          <td><%= item.author_category&.category_name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<% if current_member %>
 <% else %>
-  <p>商品情報がありません。</p>
+    <% @page_title = "商品一覧 (ログイン前)" %>
+    <h1><%= @page_title %></h1>
+
+    <%= form_tag :search_items, method: :get, class: "search" do %>
+    <%= "商品名検索 " %><%= text_field_tag "q", params[:q] %>
+    <%= submit_tag "検索" %>
+    <% end %>
+
+
+    <% if @items.present? %>
+    <table class="list">
+        <thead>
+        <tr>
+            <th>商品名</th>
+            <th>値段</th>
+            <th>在庫</th>
+            <th>ジャンル</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+            <tr>
+            <td><%= item.item_name %></td>
+            <td><%= item.price %><%= "円" %></td>
+            <td><%= item.disable? ? "○" : "－" %></td>
+            <td><%= item.author_category&.category_name %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <% else %>
+    <p>商品情報がありません。</p>
+    <% end %>
 <% end %>

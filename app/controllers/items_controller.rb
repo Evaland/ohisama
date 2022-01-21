@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-    before_action :current_member
 
     def index
         @items = Item.order("id")
@@ -8,7 +7,7 @@ class ItemsController < ApplicationController
 
     def show
         @item = Item.find(params[:id])
-        @order = Order.new()
+        @order = Order.new #order/createに移動用で作成
     end
 
     def search

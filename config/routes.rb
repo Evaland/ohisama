@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get "search", on: :collection
     resources :categories
     resources :orderitems
+    resources :orders
   end
   resources :categories
   resources :regulars
