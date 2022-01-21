@@ -8,20 +8,31 @@ names = ["sato", "suzuki", "takahasi", "isikawa", "suzuki", "kobayasi", "yosida"
     group: 1,
     regular_member: false,
     admin_member: true,
-    password: "admin!",
-    password_confirmation: "admin!"
+    password: "ohisama",
+    password_confirmation: "ohisama"
   )
 end
-0.upto(7) do |idx|
+0.upto(4) do |idx|
     Member.create(
       name: "#{fnames[idx]}",
       adress: "川崎市多摩区登戸 1-2-3-4",
-      user_id: "#{names[idx]}#{idx}",
+      user_id: "ohisama#{names[idx]}",
       group: [1, 2, 3][idx % 3],
       regular_member: false,
       admin_member: false,
-      password: "ohisama!",
-      password_confirmation: "ohisama!"
+      password: "ohisama",
+      password_confirmation: "ohisama"
     )
   end
-
+  5.upto(7) do |idx|
+    Member.create(
+      name: "#{fnames[idx]}",
+      adress: "川崎市多摩区登戸 1-2-3-4",
+      user_id: "ohisama#{names[idx]}#{idx}",
+      group: [1, 2, 3][idx % 3],
+      regular_member: true,
+      admin_member: false,
+      password: "ohisama",
+      password_confirmation: "ohisama"
+    )
+  end

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-    
+    before_action :current_member
+
     def index
         @items = Item.order("id")
         @categories = Category.order("id")
@@ -12,7 +13,11 @@ class ItemsController < ApplicationController
 
     def search
         @items = Item.search(params[:q])
-        render "index"
+        if current_member
+            render "index"
+        else 
+            render "top/index"
+        end
     end
     
     def new

@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+  before_action :login_required
+
 
     def index
         @member=Member.find_by(id: session[:member_id])

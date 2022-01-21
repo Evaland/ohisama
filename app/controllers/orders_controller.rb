@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
     before_action :current_cart
+    before_action :login_required
+
   
     def index
         @order = current_cart
