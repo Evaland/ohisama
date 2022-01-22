@@ -17,9 +17,16 @@ class OrdersController < ApplicationController
     def create
       @order = Order.find(current_cart.id)
       @item = Item.find(params[:order][:item_ids].to_i)
-      @order.items << @item
+      #[:order]は指定させて、params内は行列であることも忘れずに
       @orderitem = Orderitem.find_by(order_id: current_cart.id, item_id: params[:order][:item_ids].to_i)
-      @orderitem.orderitem_quantity = params[:order][:order_quantity].to_i
+      if @orderitem.present?
+        @orderitem.increment(:orderitem_quantity, params[:order][:order_quantity].to_i)
+      else
+        #ここでorderitemを作成している
+        @order.items << @item
+        @orderitem = Orderitem.find_by(order_id: current_cart.id, item_id: params[:order][:item_ids].to_i)
+        @orderitem.orderitem_quantity = params[:order][:order_quantity].to_i
+      end
       if @orderitem.save
         redirect_to :categories, notice: 'カート内に商品が追加されました'
       else

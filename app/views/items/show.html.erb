@@ -13,11 +13,11 @@
         <td><%= @item.price %><%= "円" %></td>
     </tr>
     <tr>
-    <td><%= form.radio_button :item_ids ,@item.id%></td>
-    </tr>
-    <tr>
         <th><%= form.label :order_quantity, "個数" %></th>
         <td><%= form.select :order_quantity, *[1..5],method: :get %><%= "個" %></td>
+    </tr>
+    <tr>
+    <td><%= form.radio_button :item_ids ,@item.id , checked: true %></td>
     </tr>
     </table>
     <div><%= form.submit "注文する(カートに入れる)"%></div>
