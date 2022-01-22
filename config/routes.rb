@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resources :regulars
   resources :orderitems
 
+  get "items/:id" => "orders#create"
   
   resource :session, only: [:create, :destroy]
 

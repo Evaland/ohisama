@@ -1,9 +1,22 @@
-<% @page_title = "マイページの編集" %>
+<% @page_title = "注文した商品の編集" %>
 
 <h1><%= @page_title %></h1>
 <div class="toolbar"><%= link_to "マイページの詳細に戻る", :orders %></div>
 
 <%= form_for @order do |form| %>
-  <%= render "shared/member_form", form: form %>
+    <table class="attr">
+        <tr>
+            <th><%= form.label :"商品名" %></th>
+            <td><%= Item.find_by(id: orderitem.item_id).item_name %></td>
+        </tr>
+        <tr>
+            <th><%= form.label :"値段" %></th>
+            <td><%= Item.find_by(id: orderitem.item_id).price %><%= "円" %></td>
+        </tr>
+        <tr>
+            <th><%= form.label :"個数" %></th>
+            <td><%= form.select :order_quantity, *[1..5],method: :get %><%= "個" %></td>
+        </tr> 
+    </table>
   <div><%= form.submit"更新"%></div>
 <% end %>

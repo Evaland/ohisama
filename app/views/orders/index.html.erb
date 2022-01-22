@@ -1,4 +1,4 @@
-<% @page_title = "ショッピングカート" %>
+<% @page_title = "ショッピングカート(注文済み/未発送)" %>
 <h1><%= @page_title %></h1>
 
 <% if @orderitem.present? %>
@@ -8,27 +8,22 @@
         <th>商品名</th>
         <th>値段</th>
         <th>個数</th>
+        <th>計</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
-      <% @orderitems.each do |orderitem| %>
+      <% @orderitem.each do |orderitem| %>
         <tr>
-          <td><%= orderitem.author_items&.item_name  %></td>
-          <td><%= orderitem.orderitem&.order_price %><%= "円" %></td>
-          <td><%= orderitem.orderitem&.orderitem_quantity %><%= "個" %></td>
-          <td>
-          <%= button_to '編集', controller: :orderitems, action: :edit %> |
-          <%= button_to '商品削除', controller: :order, action: :destroy_item,
-            data: { confirm: "本当に削除しますか?" } %> |
-          <%= button_to 'カート削除', controller: :order, action: :destroy_cart,
-            data: { confirm: "本当に削除しますか?" } %>
-          </td>
+          <td><%= Item.find_by(id: orderitem.item_id).item_name %></td>
+          <td><%= Item.find_by(id: orderitem.item_id).price %><%= "円" %></td>
+          <td><%= orderitem.orderitem_quantity %><%= "個" %></td>
+          <td><%=  @total += (Item.find_by(id: orderitem.item_id).price * orderitem.orderitem_quantity) %><%= "円" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <h2><%= "合計：#{100}円" %></h2>
+  <h2><%= "合計金額：#{@total}円" %></h2>
 
 <% else %>
   <p>カートの中に商品がありません。</p>

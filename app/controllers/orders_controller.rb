@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
   
     def index
         @order = current_cart
-        @orderitems = Orderitem.order("item_id")
+        @orderitem = Orderitem.where(order_id: @order.id)
+        @total = 0
     end
     
     def show
@@ -14,17 +15,15 @@ class OrdersController < ApplicationController
     end
 
     def create
-      @order = current_cart
-      @order.items << Item.find_by(id: params[:id].to_i)
-      @orderitem = Orderitem.find(orderitem_quantity)
-      if @orderitem.orderitem_quantity.blank?
-        @orderitem.orderitem_quantity = 0
-      end
-        @orderitem.orderitem_quantity += params[:orderitem_quantity].to_i
+      @order = Order.find(current_cart.id)
+      @item = Item.find(params[:order][:item_ids].to_i)
+      @order.items << @item
+      @orderitem = Orderitem.find_by(order_id: current_cart.id, item_id: params[:order][:item_ids].to_i)
+      @orderitem.orderitem_quantity = params[:order][:order_quantity].to_i
       if @orderitem.save
-        redirect_to @order, notice: 'カート内に商品が追加されました'
+        redirect_to :categories, notice: 'カート内に商品が追加されました'
       else
-        redirect_to @order, notice: 'カート内に商品が追加できませんでした'
+        render "new", notice: 'カート内に商品が追加できませんでした'
       end
     end
 

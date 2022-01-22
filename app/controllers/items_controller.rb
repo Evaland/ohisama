@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
     def show
         @item = Item.find(params[:id])
-        @order = Order.new #order/createに移動用で作成
+        @order = Order.new() #order/createに移動用で作
     end
 
     def search
