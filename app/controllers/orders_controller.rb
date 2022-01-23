@@ -27,7 +27,9 @@ class OrdersController < ApplicationController
         @orderitem = Orderitem.find_by(order_id: current_cart.id, item_id: params[:order][:item_ids].to_i)
         @orderitem.orderitem_quantity = params[:order][:order_quantity].to_i
       end
+      @item.item_quantity -= params[:order][:order_quantity].to_i
       if @orderitem.save
+        @item.save
         redirect_to :categories, notice: 'カート内に商品が追加されました'
       else
         render "new", notice: 'カート内に商品が追加できませんでした'
@@ -38,21 +40,16 @@ class OrdersController < ApplicationController
         @order = Order.new
     end
  
-    def destroy_item
-      @orderitem = Orderitem.find_by(params[:id])
+    def destroy
+      @orderitem = Orderitem.find_by(id:params[:id])
+      @item = Item.find_by(id:@orderitem.item_id)
+      @item.item_quantity += @orderitem.orderitem_quantity
       if @orderitem.destroy
-        redirect_to orders, notice: 'カート内の商品が削除されました'
+        @item.save
+        redirect_to :orders, notice: 'カート内の商品が削除されました'
       else
-        redirect_to orders, notice:  '削除に失敗しました'
+        redirect_to :orders, notice:  '削除に失敗しました'
       end
     end
 
-    def destroy_cart
-      @order = Order.find_by("id")
-      if @order.destroy
-        redirect_to orders, notice: 'カートが削除されました'
-      else
-        redirect_to orders, notice: '削除に失敗しました'
-      end
-    end
 end

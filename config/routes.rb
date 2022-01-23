@@ -14,16 +14,12 @@ Rails.application.routes.draw do
   end
   root "top#index"
   get "about" => "top#about", as:"about"
-  post '/add_item' => 'orderitems#add_item'
 
   resources :members do 
     resources :orders
   end
   resources :orders do
-    get '/my_cart' => 'orderitems#my_cart'
-    post '/add_item' => 'orderitems#add_item'
-    post '/update_item' => 'orderitems#update_item'
-    delete '/delete_item' => 'orderitems#delete_item'
+    delete 'orders/:id' => 'orders#destroy'
   end
 
   resources :items do
