@@ -4,14 +4,16 @@ class OrdersController < ApplicationController
 
   
     def index
-        @order = current_cart
-        @orderitem = Orderitem.where(order_id: @order.id)
-        @total = 0
+      @order = current_cart
+      #注文済カート
+      @orderitem = Orderitem.where(order_id: @order.id)
+      @total = 0
     end
     
     def show
-      @order = Order.find(member_id: current_member.id, status:1)
-      @orderitem = Orderitem.order(id)
+      #履歴カート
+      @history = Order.where(member_id: current_member.id).where.not(status:1)
+      @orderitem = Orderitem.order(order_id: @histroy.id)
     end
 
     def create

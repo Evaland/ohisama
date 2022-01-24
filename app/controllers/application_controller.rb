@@ -7,12 +7,10 @@ class ApplicationController < ActionController::Base
     private def current_cart
         if current_member
             # ユーザーとカートの紐付け
-            if Order.where(member_id: current_member.id, status:1)
+            if Order.find_by(member_id: current_member.id, status:1).present?
               current_cart = Order.find_by(member_id: current_member.id, status:1)
             else
-              current_cart = Order.new
-              current_cart.status = 1
-              current_cart.member_id = current_member.id
+              current_cart = Order.new(member_id: current_member.id, status:1)
               current_cart.save
             end
         end

@@ -1,0 +1,29 @@
+<% @page_title = "ショッピングカート(履歴)" %>
+<h1><%= @page_title %></h1>
+
+<% if @history.present? %>
+<table class="list">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>注文日時</th>
+        <th>更新日時</th>
+        <th>現在のステータス</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @history.each do |history| %>
+        <tr>
+          <td><%= Member.find_by(id: history.member_id).name%><%= " |"%></td>
+          <td><%= history.created_at %><%= " |"%></td>
+          <td><%= history.updated_at %><%= " |"%></td>
+          <td><%= history.status %></td>
+          <td><%= button_to "詳細を見る", orderitem_path(history), method: :get %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>履歴はありません。</p>
+<% end %>
