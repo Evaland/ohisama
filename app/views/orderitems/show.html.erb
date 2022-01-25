@@ -9,6 +9,7 @@
         <th>値段</th>
         <th>個数</th>
         <th>計</th>
+        <th>計算用</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -18,8 +19,8 @@
           <td><%= Item.find_by(id: orderitem.item_id).item_name %></td>
           <td><%= Item.find_by(id: orderitem.item_id).price %><%= "円" %></td>
           <td><%= orderitem.orderitem_quantity %><%= "個" %></td>
+          <td><%=  Item.find_by(id: orderitem.item_id).price * orderitem.orderitem_quantity %><%= "円" %></td>
           <td><%=  @total += (Item.find_by(id: orderitem.item_id).price * orderitem.orderitem_quantity) %><%= "円" %></td>
-          
         </tr>
       <% end %>
     </tbody>
