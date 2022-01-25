@@ -2,14 +2,21 @@
       author_category: Category.find_by(category_name: "デイリー食品"),
       item_name: "牛乳",
       price: 100,
-      item_quantity: 100,
+      item_quantity: 1000,
       disable: true
     )
     Item.create(
       author_category: Category.find_by(category_name: "デイリー食品"),
       item_name: "卵",
       price: 100,
-      item_quantity: 100,
+      item_quantity: 1000,
+      disable: true
+    )
+    Item.create(
+      author_category: Category.find_by(category_name: "デイリー食品"),
+      item_name: "食パン",
+      price: 100,
+      item_quantity: 1000,
       disable: true
     )
     Item.create(
@@ -41,7 +48,7 @@
       disable: true
     )
     Item.create(
-      author_category: Category.find_by(category_name: "加工食品"),
+      author_category: Category.find_by(category_name: "デイリー食品"),
       item_name: "ヨーグルト",
       price: 160,
       item_quantity: 100,

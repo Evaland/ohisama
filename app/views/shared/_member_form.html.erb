@@ -24,17 +24,17 @@
     <th><%= Member.human_attribute_name(:group) %></th>
     <td>
       <%= form.radio_button :group, 1 ,checked: true%>
-      <%= form.label :"グループ１" %>
+      <%= form.label :"グループA" %>
       <%= form.radio_button :group, 2 %>
-      <%= form.label :"グループ２" %>
+      <%= form.label :"グループB" %>
       <%= form.radio_button :group, 3 %>
-      <%= form.label :"グループ３" %>
+      <%= form.label :"グループC" %>
     </td>
     </tr>
     <tr>
       <th><%= form.label :定期便会員 %></th>
       <td>
-        <%= form.check_box :regular_member %>
+        <%= form.check_box :regular_member ,checked: false%>
       </td>
     </tr>
     

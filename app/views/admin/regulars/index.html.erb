@@ -1,7 +1,7 @@
 <% @page_title = "定期便管理ページ" %>
 <h1><%= @page_title %></h1>
 
-<% if @members.present? %>
+<% if @regulars.present? %>
   <table class="list">
     <thead>
       <tr>
@@ -11,14 +11,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @members.each do |member| %>
+      <% @regulars.each do |regular| %>
         <tr>
-          <td><%= link_to member.name, [:admin,member] %></td>
-          <td><%= member.regular_member? ? "○" : "－" %></td>
+          <td><%= Member.find_by(id: regular.member_id).name %></td>
+          <td><%= Member.find_by(id: regular.member_id).regular_member? ? "○" : "－" %></td>
           <td>
-            <%= link_to "編集", [:edit, :admin, member] %> |
-            <%= link_to "削除", [:admin, member], method: :delete,
-              data: { confirm: "本当に削除しますか?" } %>
+            <%= link_to "定期便の編集", [:edit,:admin, regular] %> |
+            <%= link_to "定期便を見る", [:admin,regular] %>
           </td>
         </tr>
       <% end %>

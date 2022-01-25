@@ -12,14 +12,16 @@ class Item < ApplicationRecord
         numericality: {
           greater_than: 0,
           less_than: 100000,
-          allow_blank: true
+          allow_blank: true,
+          message: :invalid_item_price
     }
 
     validates :item_quantity, presence: true,
         numericality: {
-          greater_than: 0,
+          greater_than: 5,
           less_than: 2000,
-          allow_blank: true
+          allow_blank: true,
+          message: :invalid_item_item_quantity
     }
 
     validates :disable, presence: true

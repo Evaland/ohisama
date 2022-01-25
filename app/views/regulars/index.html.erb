@@ -1,2 +1,25 @@
-<% @page_title = "定期便管理" %>
+<% @page_title = "定期便(マイページ)" %>
 <h1><%= @page_title %></h1>
+
+<% if @regular.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>個数</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @regular.each do |regular| %>
+        <tr>
+          <td><%= Item.find_by(id: regular.item_id).item_name %></td>
+          <td><%= regular.regular_quantity %></td>
+          <td><%= button_to "定期便の編集", [:edit, regular] ,method: :get %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>定期便を注文していません。</p>
+<% end %>

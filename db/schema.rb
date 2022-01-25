@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
     t.string "adress", null: false
     t.string "user_id", null: false
     t.integer "group", null: false
-    t.boolean "regular_member", default: false, null: false
+    t.boolean "regular_member", default: false
     t.boolean "admin_member", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_030058) do
     t.integer "member_id"
     t.integer "item_id"
     t.integer "regular_quantity", null: false
-    t.datetime "update_at", null: false
+    t.datetime "update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_regulars_on_item_id"

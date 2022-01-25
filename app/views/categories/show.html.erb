@@ -12,17 +12,23 @@
         <th>値段</th>
         <th>在庫</th>
         <th>ジャンル</th>
-        <th>操作</th>
+        <% if current_member %>
+          <th>在庫数(テスト確認用)</th>
+          <th>操作</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @items.each do |item| %>
         <tr>
-          <td><%= link_to item.item_name, item %></td>
+          <td><%= item.item_name %></td>
           <td><%= item.price %><%= "円" %></td>
           <td><%= item.disable? ? "○" : "－" %></td>
           <td><%= item.author_category&.category_name %></td>
-          <td><%= button_to 'カートに入れる', item, method: :get %></td>
+          <% if current_member %>
+            <td><%= item.item_quantity %></td>
+            <td><%= button_to 'カートに入れる', item, method: :get %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

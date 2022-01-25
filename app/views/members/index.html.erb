@@ -5,4 +5,7 @@
 
 <%= render "body" %>
   
-<div class="toolbar"><%= link_to "履歴表示", :orderitems %></div>
+<div class="toolbar"><%= button_to "履歴表示", :orderitems, method: :get %></div>
+
+
+<div class="toolbar"><%= button_to "定期便内容変更", :regulars, method: :get %></div>

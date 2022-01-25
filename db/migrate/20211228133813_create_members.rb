@@ -5,7 +5,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.string :adress, null: false #ユーザ
       t.string :user_id, null: false #ユーザID
       t.integer :group, null: false #地域分け
-      t.boolean :regular_member, null: false, default: false #定期便を買っているかどうか
+      t.boolean :regular_member, default: false #定期便を買っているかどうか
       t.boolean :admin_member, default:false #管理者であるか否か
 
       t.timestamps

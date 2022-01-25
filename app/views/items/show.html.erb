@@ -3,6 +3,7 @@
 
 
 <%= form_for @order do |form| %>
+    <%= render "shared/errors", obj: @order %>
     <table class="attr">
     <tr>
         <th><%= "商品名" %></th>

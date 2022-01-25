@@ -4,7 +4,7 @@ class CreateRegulars < ActiveRecord::Migration[5.2]
       t.references :member # 外部キー
       t.references :item #外部キー
       t.integer :regular_quantity, null: false #
-      t.datetime :update_at, null: false #
+      t.datetime :update_at#
 
       t.timestamps
     end
