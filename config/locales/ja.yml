@@ -2,7 +2,6 @@ ja:
   activerecord:
     attributes:
       member:
-        name: ユーザー名
-        adress: 住所
-        user_id: ユーザID
-        user_password: ユーザパスワード
+        group_1: A
+        group_2: B
+        group_3: C
