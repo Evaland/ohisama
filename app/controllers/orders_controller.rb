@@ -8,23 +8,14 @@ class OrdersController < ApplicationController
       #注文済カート
       @orderitem = Orderitem.where(order_id: @order.id)
       @total = 0
+      @regular = Regular.where(member_id: @order.id)
       @member = current_member
       @egg = Item.find_by(item_name: "卵")
       @milk = Item.find_by(item_name: "牛乳")
       @regular_egg = Regular.where(item_id: @egg.id,member_id: @member.id).first
       @regular_milk = Regular.where(item_id: @milk.id,member_id: @member.id).last
 
-      if current_member.regular_member == true
-        @order　= Order.find(current_member.id)
-        @order.items << @egg
-        @orderitem1 = Orderitem.find_by(order_id: @order.id, item_id: @egg.id)
-        @orderitem1.orderitem_quantity = @regular_egg.regular_quantity
-        @orderitem1.save
-        @order.items << @milk
-        @orderitem2 = Orderitem.find_by(order_id: @order.id, item_id: @milk.id)
-        @orderitem2.orderitem_quantity = @regular_milk.regular_quantity
-        @orderitem2.save
-      end
+      
     end
     
     def show
