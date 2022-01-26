@@ -3,10 +3,53 @@
 
 <div class="toolbar"><%= link_to "会員の新規登録", :new_admin_member %></div>
 
-<div class="toolbar"><%= link_to "グループA(月曜日)", @membersA %></div>
-<div class="toolbar"><%= link_to "グループB(木曜日)", @membersB %></div>
-<div class="toolbar"><%= link_to "グループC(金曜日)", @membersC %></div>
+<%= link_to "グループA",[:admin_members, group: "1"],method: :get %>
+<%= link_to "グループB", [:admin_members, group: "2"],method: :get %>
+<%= link_to "グループC", [:admin_members, group: "3"],method: :get %>
+<% if params[:group].to_i == 1 %>
+  <% @groups = Member.where(group: 1) %>
+<% end %>
+<% if params[:group].to_i == 2 %>
+    <% @groups = Member.where(group: 2) %>
+<% end %>
+<% if params[:group].to_i == 3 %>
+  <% @groups = Member.where(group: 3) %>
+<% end %>
 
+<% if @groups.present? %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>住所</th>
+          <th>ユーザID</th>
+          <th>パスワード(ohisama)</th>
+          <th>グループ(1:A,2:B,3:C)</th>
+          <th>定期便</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |member| %>
+          <tr>
+            <td><%= link_to member.name, [:admin,member] %></td>
+            <td><%= member.adress %></td>
+            <td><%= member.user_id %></td>
+            <td><%= member.password %></td>
+            <td><%= member.group %></td>
+            <td><%= member.regular_member? ? "○" : "－" %></td>
+            <td>
+              <%= link_to "編集", [:edit, :admin, member] %> |
+              <%= link_to "削除", [:admin, member], method: :delete,
+                data: { confirm: "本当に削除しますか?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<% if params[:group].blank? %>
 <% if @members.present? %>
   <table class="list">
     <thead>
@@ -40,4 +83,6 @@
   </table>
 <% else %>
   <p>会員情報がありません。</p>
+<% end %>
+
 <% end %>

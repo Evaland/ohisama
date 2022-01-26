@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'top#index'
     resources :members do
+      get "search", on: :collection
         get "group" => "members#group"
     end
     resources :orders
@@ -41,5 +42,5 @@ Rails.application.routes.draw do
   get "items/:id" => "orders#create"
   
   resource :session, only: [:create, :destroy]
-
+  resources :member_groups
 end

@@ -19,7 +19,9 @@ class RegularsController < ApplicationController
     def update
         @regular = Regular.find(params[:id])
         @regular.assign_attributes(params[:regular])
-        if @regular.save
+        if @regular.regular_quantity == 0
+            @regular.destroy
+        elsif @regular.save
           redirect_to :regulars, notice: "マイページを更新しました。"
         else
           render "edit"

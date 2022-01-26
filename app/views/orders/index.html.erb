@@ -17,10 +17,10 @@
       <% @orderitem.each do |orderitem| %>
         <tr>
           <td><%= Item.find_by(id: orderitem.item_id).item_name %></td>
-          <td><%= Item.find_by(id: orderitem.item_id).price %><%= "円" %></td>
-          <td><%= orderitem.orderitem_quantity %><%= "個" %></td>
-          <td><%=  Item.find_by(id: orderitem.item_id).price * orderitem.orderitem_quantity %><%= "円" %></td>
-          <td><%=  @total += (Item.find_by(id: orderitem.item_id).price * orderitem.orderitem_quantity) %><%= "円" %></td>
+          <td><%= Item.find_by(id: orderitem.item_id).price.to_i %><%= "円" %></td>
+          <td><%= orderitem.orderitem_quantity.to_i %><%= "個" %></td>
+          <td><%=  Item.find_by(id: orderitem.item_id).price * orderitem.orderitem_quantity.to_i %><%= "円" %></td>
+          <td><%=  @total += (Item.find_by(id: orderitem.item_id).price.to_i * orderitem.orderitem_quantity.to_i) %><%= "円" %></td>
           <td>
             <%= button_to "カートから削除", order_path(orderitem),:orderitem_id=> orderitem.id, method: :delete,
               data: { confirm: "本当に削除しますか?" } %>
@@ -43,13 +43,15 @@
         <tr>
             <th>商品名</th>
             <th>値段</th>
+            <th>個数</th>
         </tr>
     </thead>
     <tbody>
     <% @regular.each do |regular| %>
         <tr>
             <td><%= Item.find_by(id: regular.item_id).item_name %></td>
-            <td><%= regular.regular_quantity %></td>
+            <td><%= Item.find_by(id: regular.item_id).price %><%= "円" %></td>
+            <td><%= regular.regular_quantity %><%= "個" %></td>
         </tr>
     <% end %>
     </tbody>

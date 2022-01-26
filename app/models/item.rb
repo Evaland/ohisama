@@ -5,24 +5,21 @@ class Item < ApplicationRecord
     has_many :orders, through: :orderitems
 
     validates :item_name, presence: true,
-    allow_blank: true,
+    allow_blank: false,
     uniqueness: true
 
     validates :price, presence: true,
         numericality: {
           greater_than: 0,
           less_than: 100000,
-          allow_blank: true,
+          allow_blank: false,
           message: :invalid_item_price
     }
 
     validates :item_quantity, presence: true,
-        numericality: {
-          greater_than: 5,
-          less_than: 2000,
-          allow_blank: true,
-          message: :invalid_item_item_quantity
-    }
+     allow_blank: false,
+      numericality: {greater_than: 0,
+      message: :invalid_item_item_quantity}
 
     validates :disable, presence: true
 

@@ -3,9 +3,6 @@ class Admin::MembersController < Admin::Base
 
     def index
         @members = Member.order("id")
-        @memersA = Member.where(group: 1)
-        @memersB = Member.where(group: 2)
-        @memersC = Member.where(group: 3)
     end
 
     def show

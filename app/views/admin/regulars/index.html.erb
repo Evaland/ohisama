@@ -1,9 +1,66 @@
 <% @page_title = "定期便管理ページ" %>
 <h1><%= @page_title %></h1>
 
-<%= link_to "牛乳"%>
-<%= link_to "卵"%>
 
+<%= link_to "牛乳",[:admin_regulars, item_id: "1"],method: :get %>
+<%= link_to "卵", [:admin_regulars, item_id: "2"],method: :get %>
+
+<% if params[:item_id].to_i == 1 %>
+  <% @regulars1 = Regular.where(item_id: 1).where.not(regular_quantity: 0) %>
+<% end %>
+<% if params[:item_id].to_i == 2 %>
+  <% @regulars2 = Regular.where(item_id: 2).where.not(regular_quantity: 0) %>
+<% end %>
+
+
+
+<% if @regulars1.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>定期便購入</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @regulars1.each do |regular| %>
+        <tr>
+          <td><%= link_to Member.find_by(id: regular.member_id).name, [:admin,regular] %></td>
+          <td><%= Member.find_by(id: regular.member_id).regular_member? ? "○" : "－" %></td>
+          <td>
+            <%= link_to "定期便の編集", [:edit,:admin, regular] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if @regulars2.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>定期便購入</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @regulars2.each do |regular| %>
+        <tr>
+          <td><%= link_to Member.find_by(id: regular.member_id).name, [:admin,regular] %></td>
+          <td><%= Member.find_by(id: regular.member_id).regular_member? ? "○" : "－" %></td>
+          <td>
+            <%= link_to "定期便の編集", [:edit,:admin, regular] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if params[:item_id].blank? %>
 <% if @regulars.present? %>
   <table class="list">
     <thead>
@@ -25,6 +82,5 @@
       <% end %>
     </tbody>
   </table>
-<% else %>
-  <p>会員情報がありません。</p>
+<% end %>
 <% end %>

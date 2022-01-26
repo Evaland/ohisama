@@ -45,17 +45,18 @@ class MembersController < ApplicationController
       @milk = Item.find_by(item_name: "牛乳")
       if @member.save
         if @member.regular_member == true
-          if Regular.find_by(member_id: @member.id).blank?
             @regular_egg = Regular.new(member_id: @member.id, item_id: @egg.id)
             @regular_egg.regular_quantity = 1
             @regular_milk = Regular.new(member_id: @member.id, item_id: @milk.id)
             @regular_milk.regular_quantity = 1
             @regular_egg.save
             @regular_milk.save
-          end
+            
+            
         else
           if Regular.find_by(member_id: @member.id).present?
-            @regular = Regular.find_by(member_id: @member.id).destroy
+            @regular = Regular.where(member_id: @member.id)
+            @regular.destroy_all
           end
         end
         redirect_to :members, notice: "マイページを更新しました。"
@@ -64,6 +65,8 @@ class MembersController < ApplicationController
         render "edit"
       end
   end
+
+    
 
     def destroy
         @member = Member.find(params[:id])

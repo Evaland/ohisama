@@ -37,7 +37,7 @@ class Admin::ItemsController < Admin::Base
     def update
         @item = Item.find(params[:id])
         @item.assign_attributes(params[:item])
-        if @item.save!
+        if @item.save
           # 保存が成功したらshowにリダイレクトする。フラッシュ値を設定する。
           redirect_to :admin_items, notice: "商品を更新しました。"
         else

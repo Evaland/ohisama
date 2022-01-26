@@ -4,6 +4,7 @@
 <div class="toolbar"><%= link_to "マイページの詳細に戻る", :orders %></div>
 
 <%= form_for @order do |form| %>
+    <%= render "shared/errors", obj: @item %>
     <table class="attr">
         <tr>
             <th><%= form.label :"商品名" %></th>

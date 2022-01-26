@@ -1,11 +1,12 @@
 <% @page_title = "マイページ" %>
 <h1><%= @page_title %></h1>
 
-<div class="toolbar"><%= link_to "編集", [:edit, @member] %></div>
+<div class="toolbar"><%= link_to "マイページ情報の編集", [:edit, @member] %></div>
 
 <%= render "body" %>
   
 <div class="toolbar"><%= button_to "履歴表示", :orderitems, method: :get %></div>
 
-
+<% if @member.regular_member ==true %>
 <div class="toolbar"><%= button_to "定期便内容変更", :regulars, method: :get %></div>
+<% end %>

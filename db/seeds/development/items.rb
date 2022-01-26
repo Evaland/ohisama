@@ -42,7 +42,7 @@
     )
     Item.create(
       author_category: Category.find_by(category_name: "生鮮"),
-      item_name: "さんま",
+      item_name: "マグロ",
       price: 400,
       item_quantity: 100,
       disable: true

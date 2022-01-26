@@ -16,7 +16,7 @@ end
     Member.create(
       name: "#{fnames[idx]}",
       adress: "川崎市多摩区登戸 1-2-3-4",
-      user_id: "ohisama#{names[idx]}",
+      user_id: "userid#{idx}",
       group: [1, 2, 3][idx % 3],
       regular_member: false,
       admin_member: false,
@@ -28,7 +28,7 @@ end
     Member.create(
       name: "#{fnames[idx]}",
       adress: "川崎市多摩区登戸 1-2-3-4",
-      user_id: "ohisama#{names[idx]}#{idx}",
+      user_id: "userid#{idx}",
       group: [1, 2, 3][idx % 3],
       regular_member: true,
       admin_member: false,
@@ -40,7 +40,7 @@ end
     Member.create(
       name: "#{fnames[idx]}",
       adress: "川崎市多摩区登戸 1-2-3-4",
-      user_id: "#{names[idx]}",
+      user_id: "userid#{idx}",
       group: [1, 2, 3][idx % 3],
       regular_member: true,
       admin_member: false,
