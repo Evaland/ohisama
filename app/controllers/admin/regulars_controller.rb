@@ -18,6 +18,11 @@ class Admin::RegularsController < Admin::Base
         @regular2 = Regular.find_by(member_id: @regulars.member_id, item_id: 2)
     end
 
+    def search
+        @regulars = Regular.search(params[:q])
+        render "index"
+    end
+
     def update
         @regular = Regular.find(params[:id])
         @regular.assign_attributes(params[:regular])

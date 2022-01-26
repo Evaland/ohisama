@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     root 'top#index'
-    resources :members
+    resources :members do
+        get "group" => "members#group"
+    end
     resources :orders
     resources :items do
       get "search", on: :collection
@@ -9,7 +11,9 @@ Rails.application.routes.draw do
       resources :orderitems
     end
     resources :categories
-    resources :regulars
+    resources :regulars do
+      get "search", on: :collection
+    end
     resource :session, only: [:create, :destroy]
   end
   root "top#index"
@@ -29,7 +33,9 @@ Rails.application.routes.draw do
     resources :orders
   end
   resources :categories
-  resources :regulars
+  resources :regulars do
+    get "search", on: :collection
+  end
   resources :orderitems
 
   get "items/:id" => "orders#create"

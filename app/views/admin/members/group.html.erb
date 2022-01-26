@@ -1,13 +1,7 @@
-<% @page_title = "マイページ" %>
+<% @page_title = "グループ" %>
 <h1><%= @page_title %></h1>
 
-<div class="toolbar"><%= link_to "会員の新規登録", :new_admin_member %></div>
-
-<div class="toolbar"><%= link_to "グループA(月曜日)", @membersA %></div>
-<div class="toolbar"><%= link_to "グループB(木曜日)", @membersB %></div>
-<div class="toolbar"><%= link_to "グループC(金曜日)", @membersC %></div>
-
-<% if @members.present? %>
+<% if @membersA.present? %>
   <table class="list">
     <thead>
       <tr>
@@ -41,3 +35,4 @@
 <% else %>
   <p>会員情報がありません。</p>
 <% end %>
+

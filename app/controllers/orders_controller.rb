@@ -8,6 +8,8 @@ class OrdersController < ApplicationController
       #注文済カート
       @orderitem = Orderitem.where(order_id: @order.id)
       @total = 0
+      @member = current_member
+      @regular = Regular.where(member_id: @member.id)
     end
     
     def show

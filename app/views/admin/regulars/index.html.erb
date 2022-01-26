@@ -1,6 +1,9 @@
 <% @page_title = "定期便管理ページ" %>
 <h1><%= @page_title %></h1>
 
+<%= link_to "牛乳"%>
+<%= link_to "卵"%>
+
 <% if @regulars.present? %>
   <table class="list">
     <thead>
@@ -13,11 +16,10 @@
     <tbody>
       <% @regulars.each do |regular| %>
         <tr>
-          <td><%= Member.find_by(id: regular.member_id).name %></td>
+          <td><%= link_to Member.find_by(id: regular.member_id).name, [:admin,regular] %></td>
           <td><%= Member.find_by(id: regular.member_id).regular_member? ? "○" : "－" %></td>
           <td>
-            <%= link_to "定期便の編集", [:edit,:admin, regular] %> |
-            <%= link_to "定期便を見る", [:admin,regular] %>
+            <%= link_to "定期便の編集", [:edit,:admin, regular] %>
           </td>
         </tr>
       <% end %>
