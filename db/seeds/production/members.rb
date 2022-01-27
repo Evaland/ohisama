@@ -30,7 +30,7 @@ end
       adress: "川崎市多摩区登戸 1-2-3-4",
       user_id: "userid#{idx}",
       group: [1, 2, 3][idx % 3],
-      regular_member: true,
+      regular_member: false,
       admin_member: false,
       password: "ohisama",
       password_confirmation: "ohisama"
@@ -42,7 +42,7 @@ end
       adress: "川崎市多摩区登戸 1-2-3-4",
       user_id: "userid#{idx}",
       group: [1, 2, 3][idx % 3],
-      regular_member: true,
+      regular_member: false,
       admin_member: false,
       password: "ohisama",
       password_confirmation: "ohisama"
