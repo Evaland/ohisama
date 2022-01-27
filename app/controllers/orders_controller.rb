@@ -11,11 +11,6 @@ class OrdersController < ApplicationController
       @total2 = 0
       @regular = Regular.where(member_id: @order.id)
       @member = current_member
-      @egg = Item.find_by(item_name: "卵")
-      @milk = Item.find_by(item_name: "牛乳")
-      @regular_egg = Regular.where(item_id: @egg.id,member_id: @member.id).first
-      @regular_milk = Regular.where(item_id: @milk.id,member_id: @member.id).last
-
       
     end
     
