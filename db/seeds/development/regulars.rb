@@ -26,5 +26,5 @@ Regular.create(
 Regular.create(
     member_id: Member.find_by(id: 10).id,
     item_id: Item.find_by(item_name: "卵").id,
-    regular_quantity: 1
+    regular_quantity: 0
 )
