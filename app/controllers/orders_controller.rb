@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
       #注文済カート
       @orderitem = Orderitem.where(order_id: @order.id)
       @total = 0
+      @total2 = 0
       @regular = Regular.where(member_id: @order.id)
       @member = current_member
       @egg = Item.find_by(item_name: "卵")

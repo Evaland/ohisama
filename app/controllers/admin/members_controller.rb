@@ -51,6 +51,8 @@ class Admin::MembersController < Admin::Base
               @regular_milk.regular_quantity = 1
               @regular_egg.save
               @regular_milk.save
+
+            
             end
           else
             if Regular.find_by(member_id: @member.id).present?

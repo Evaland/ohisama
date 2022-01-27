@@ -4,8 +4,12 @@
 <%= form_for [:admin, @regular1] do |form| %>
     <table class="attr">
         <tr>
-            <th><%= "商品名" %></th>
+            <th><%= "ユーザー名" %></th>
             <td><%= Member.find_by(id: @regular1.member_id).name %></td>
+        </tr>
+        <tr>
+            <th><%= "商品名" %></th>
+            <td><%= Item.find_by(id: @regular1.item_id).item_name %></td>
         </tr>
         <tr>
             <th><%= form.label :"個数" %></th>
@@ -19,7 +23,7 @@
     <table class="attr">
         <tr>
             <th><%= "商品名" %></th>
-            <td><%= Member.find_by(id: @regular2.member_id).name %></td>
+            <td><%= Item.find_by(id: @regular2.item_id).item_name %></td>
         </tr>
         <tr>
             <th><%= form.label :"個数" %></th>

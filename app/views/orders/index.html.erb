@@ -29,7 +29,7 @@
       <% end %>
     </tbody>
   </table>
-  <h2><%= "合計金額：#{@total}円" %></h2>
+  <h2><%= "カート合計金額：#{@total}円" %></h2>
 
 <% else %>
   <p>カートの中に商品がありません。</p>
@@ -44,6 +44,7 @@
             <th>商品名</th>
             <th>値段</th>
             <th>個数</th>
+            <th>計算用</th>
         </tr>
     </thead>
     <tbody>
@@ -52,8 +53,11 @@
             <td><%= Item.find_by(id: regular.item_id).item_name %></td>
             <td><%= Item.find_by(id: regular.item_id).price %><%= "円" %></td>
             <td><%= regular.regular_quantity %><%= "個" %></td>
+            <td><%=  @total2 += (Item.find_by(id: regular.item_id).price.to_i * regular.regular_quantity.to_i) %><%= "円" %></td>
         </tr>
     <% end %>
     </tbody>
    </table>
+   <h2><%= "定期便の合計金額：#{@total2}円" %></h2>
 <% end %>
+<h2><%= "小計：#{@total+@total2}円" %></h2>

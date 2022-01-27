@@ -1,11 +1,12 @@
 <% @page_title = "定期便(編集)" %>
 <h1><%= @page_title %></h1>
 
-<%= form_for @regular1 do |form| %>
+
+<%= form_for @regular2 do |form| %>
     <table class="attr">
         <tr>
             <th><%= "商品名" %></th>
-            <td><%= Member.find_by(id: @regular1.member_id).name %></td>
+            <td><%= Item.find_by(id: @regular2.item_id).item_name %></td>
         </tr>
         <tr>
             <th><%= form.label :"個数" %></th>
@@ -15,11 +16,11 @@
   <div><%= form.submit"更新"%></div>
 <% end %>
 
-<%= form_for @regular2 do |form| %>
+<%= form_for @regular1 do |form| %>
     <table class="attr">
         <tr>
             <th><%= "商品名" %></th>
-            <td><%= Member.find_by(id: @regular2.member_id).name %></td>
+            <td><%= Item.find_by(id: @regular1.item_id).item_name %></td>
         </tr>
         <tr>
             <th><%= form.label :"個数" %></th>
