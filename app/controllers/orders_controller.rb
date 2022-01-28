@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       @orderitem = Orderitem.where(order_id: @order.id)
       @total = 0
       @total2 = 0
-      @regular = Regular.where(member_id: @order.id)
+      @regular = Regular.where(member_id: current_member.id)
       
     end
     
