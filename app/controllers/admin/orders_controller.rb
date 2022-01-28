@@ -25,7 +25,7 @@ class Admin::OrdersController < Admin::Base
         p @member.count
         @member.each do |member|
             p member.id
-            @order =Order.find_by("member_id = ?",member.id, status: 1)
+            @order =Order.find_by("member_id = ?",member.id)
             p "ここ#{@order.id}"
             @order.assign_attributes(status: params[:order][:status])
             unless @order.save 
