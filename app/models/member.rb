@@ -4,6 +4,9 @@ class Member < ApplicationRecord
     has_many :regulars, dependent: :destroy
     has_many :orders, dependent: :destroy
 
+    has_many :statuses, dependent: :destroy
+    has_many :orders, through: :statuses
+
     validates :name, presence: true
     validates :adress, presence: true
 

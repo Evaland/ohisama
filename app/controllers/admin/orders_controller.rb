@@ -13,14 +13,27 @@ class Admin::OrdersController < Admin::Base
     end
 
     def edit
+        p "#{params}"
         @order = Order.find_by(id: params[:id])
         @member = Member.find_by(id: @order.member_id)
     end
+    
 
     def update
-        @order = Order.find(params[:id])
-        @order.assign_attributes(params[:order])
-        if @order.save
+        flag = true 
+        @member = Member.where(group: params[:order][:group])
+        p @member.count
+        @member.each do |member|
+            p member.id
+            @order =Order.find_by("member_id = ?",member.id, status: 1)
+            p "ここ#{@order.id}"
+            @order.assign_attributes(status: params[:order][:status])
+            unless @order.save 
+                flag = false 
+            end
+        end
+        
+        if flag
           redirect_to :admin_orders, notice: "マイページを更新しました。"
         else
           render "edit"

@@ -8,17 +8,21 @@
 <% if params[:group].to_i == 1 %>
   <% @groups = Member.where(group: 1) %>
   <% @group = Member.find_by(group: 1) %>
+  <% @status_new = Status.new(member_id: @group) %>
   <% @status = Order.find_by(member_id: @group.id) %>
+  <% @statuses = Order.where(member_id: @group.id) %>
 <% end %>
 <% if params[:group].to_i == 2 %>
   <% @groups = Member.where(group: 2) %>
   <% @group = Member.find_by(group: 2) %>
   <% @status = Order.find_by(member_id: @group.id) %>
+  <% @statuses = Order.where(member_id: @group.id) %>
 <% end %>
 <% if params[:group].to_i == 3 %>
   <% @groups = Member.where(group: 3) %>
   <% @group = Member.find_by(group: 3) %>
   <% @status = Order.find_by(member_id: @group.id) %>
+  <% @statuses = Order.where(member_id: @group.id) %>
 <% end %>
 
 <% if @groups.present? %>
@@ -32,18 +36,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @groups.each do |member| %>
+      <% @groups.each do |group| %>
         <tr>
-          <td><%= member.name %></td>
-          <td><%= @status.status %></td>
-          <td><%= member.group %></td>
-          <td><%= @status.updated_at %></td>
+          <td><%= group.name %></td>
+          <td><%= Order.find_by(member_id: group.id).status %></td>
+          <td><%= group.group %></td>
+          <td><%= Order.find_by(member_id: group.id).updated_at %></td>
           
         </tr>
       <% end %>
     </tbody>
   </table>
-<%= link_to "配達ステータスの編集", [:edit, :admin, @status] %>
+<%= link_to "配達ステータス１→２", [:edit, :admin, @status] %>
 
 <% end %>
 

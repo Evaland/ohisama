@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
       @total = 0
       @total2 = 0
       @regular = Regular.where(member_id: @order.id)
-      @member = current_member
       
     end
     
