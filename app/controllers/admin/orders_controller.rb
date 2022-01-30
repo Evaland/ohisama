@@ -21,11 +21,11 @@ class Admin::OrdersController < Admin::Base
 
     def update
         flag = true 
-        @member = Member.where(group: params[:order][:group])
+        @member = Order.where(order_group: params[:order][:group])
         p @member.count
         @member.each do |member|
             p member.id
-            @order =Order.find_by("member_id = ?",member.id)
+            @order =Order.find_by("member_id = ?",member.member_id)
             p "ここ#{@order.id}"
             @order.assign_attributes(status: params[:order][:status])
             unless @order.save 

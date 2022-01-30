@@ -3,9 +3,9 @@
 
 <h2><%= "ステータス1のみ表示" %></h2>
 
-<%= link_to "グループA",[:admin_orders, group: "1"],method: :get %>
-<%= link_to "グループB", [:admin_orders, group: "2"],method: :get %>
-<%= link_to "グループC", [:admin_orders, group: "3"],method: :get %>
+<%= link_to "グループA(1)",[:admin_orders, group: "1"],method: :get %>
+<%= link_to "グループB(2)", [:admin_orders, group: "2"],method: :get %>
+<%= link_to "グループC(3)", [:admin_orders, group: "3"],method: :get %>
 <% if params[:group].to_i == 1 %>
   <% @groups = Member.where(group: 1) %>
   <% @group = Member.find_by(group: 1) %>
@@ -26,6 +26,7 @@
 <% end %>
 
 <% if @statuses.present? %>
+<p><%= "グループ#{params[:group]}" %></p>
   <table class="list">
     <thead>
       <tr>
@@ -38,18 +39,18 @@
     <tbody>
       <% @statuses.each do |status| %>
         <tr>
-          <td><%= Member.find_by(id: status.id).name %></td>
+          <td><%= Member.find_by(id: status.member_id).name %></td>
           <td><%= status.status %></td>
-          <td><%= Member.find_by(id: status.id).group %></td>
+          <td><%= Member.find_by(id: status.member_id).group %></td>
           <td><%= status.updated_at %></td>
           
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to "配達ステータス１→２(変更)", [:edit, :admin, @status] %>
+  <%= link_to "配達ステータス１→２（変更）", [:edit, :admin, @status] %>
   <% else %>
-  <p>ステータス1のカートがありません。</p>
+  <p><%= "グループ#{params[:group]}のステータス1のカートがありません。" %></p>
   <% end %>
 <%= link_to "配達ステータス2以降変更（全体）", :admin_statuses %>
 

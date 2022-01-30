@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
             if Order.find_by(member_id: current_member.id, status:1).present?
               current_cart = Order.find_by(member_id: current_member.id, status:1)
             else
-              current_cart = Order.new(member_id: current_member.id, status:1)
+              current_cart = Order.new(member_id: current_member.id, status:1, order_group: current_member.group)
               current_cart.save
             end
         end
