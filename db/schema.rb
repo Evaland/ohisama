@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_071121) do
     t.integer "status"
     t.datetime "order_time"
     t.integer "order_quantity"
+    t.integer "order_group"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_orders_on_member_id"

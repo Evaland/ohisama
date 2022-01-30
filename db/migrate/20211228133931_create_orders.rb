@@ -8,6 +8,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :status #発送ランク
       t.datetime :order_time #発注時間
       t.integer :order_quantity
+      t.integer :order_group
 
       t.timestamps
     end
