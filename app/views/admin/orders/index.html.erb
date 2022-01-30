@@ -47,7 +47,9 @@
       <% end %>
     </tbody>
   </table>
-<%= link_to "配達ステータス１→２", [:edit, :admin, @status] %>
+  <%= link_to "配達ステータス１→２(変更)", [:edit, :admin, @status] %>
+  <% else %>
+  <p>ステータス1のカートがありません。</p>
+  <% end %>
 <%= link_to "配達ステータス2以降変更（全体）", :admin_statuses %>
-<% end %>
 

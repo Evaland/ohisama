@@ -17,9 +17,9 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= Member.find_by(id: order.id).name %></td>
+          <td><%= Member.find_by(id: order.member_id).name %></td>
           <td><%= order.status %></td>
-          <td><%= Member.find_by(id: order.id).group %></td>
+          <td><%= Member.find_by(id: order.member_id).group %></td>
           <td><%= order.updated_at %></td>
           <td><%= link_to "編集(未完成)", [:edit, :admin, order] %></td>
         </tr>

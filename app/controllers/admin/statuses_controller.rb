@@ -1,6 +1,6 @@
 class Admin::StatusesController < Admin::Base
     def index
-        @orders =Order.order("id")
+        @orders = Order.order("id")
     end
 
     def edit
