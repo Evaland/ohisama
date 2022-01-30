@@ -1,6 +1,7 @@
 <% @page_title = "配達ステータス管理" %>
 <h1><%= @page_title %></h1>
 
+<h2><%= "ステータス1のみ表示" %></h2>
 
 <%= link_to "グループA",[:admin_orders, group: "1"],method: :get %>
 <%= link_to "グループB", [:admin_orders, group: "2"],method: :get %>
@@ -9,19 +10,19 @@
   <% @groups = Member.where(group: 1) %>
   <% @group = Member.find_by(group: 1) %>
   <% @status = Order.find_by(member_id: @group.id) %>
-  <% @statuses = Order.where(order_group: @group.group) %>
+  <% @statuses = Order.where(order_group: @group.group,status: 1) %>
 <% end %>
 <% if params[:group].to_i == 2 %>
   <% @groups = Member.where(group: 2) %>
   <% @group = Member.find_by(group: 2) %>
   <% @status = Order.find_by(member_id: @group.id) %>
-  <% @statuses = Order.where(order_group: @group.group) %>
+  <% @statuses = Order.where(order_group: @group.group,status: 1) %>
 <% end %>
 <% if params[:group].to_i == 3 %>
   <% @groups = Member.where(group: 3) %>
   <% @group = Member.find_by(group: 3) %>
   <% @status = Order.find_by(member_id: @group.id) %>
-  <% @statuses = Order.where(order_group: @group.group) %>
+  <% @statuses = Order.where(order_group: @group.group,status: 1) %>
 <% end %>
 
 <% if @statuses.present? %>
@@ -47,6 +48,6 @@
     </tbody>
   </table>
 <%= link_to "配達ステータス１→２", [:edit, :admin, @status] %>
-
+<%= link_to "配達ステータス2以降変更（全体）", :admin_statuses %>
 <% end %>
 

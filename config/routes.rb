@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :categories
       resources :orderitems
     end
+    resources :statuses
+    
     resources :categories
     resources :regulars do
       get "search", on: :collection
@@ -42,5 +44,5 @@ Rails.application.routes.draw do
   get "items/:id" => "orders#create"
   
   resource :session, only: [:create, :destroy]
-  resources :member_groups
+  resources :statuses
 end

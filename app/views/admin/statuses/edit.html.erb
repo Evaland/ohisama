@@ -1,0 +1,17 @@
+<% @page_title = "配達ステータス管理(編集)" %>
+<h1><%= @page_title %></h1>
+
+<%= form_for [:admin, @order] do |form| %>
+    <%= form.hidden_field :group, :value => @member.group %>
+    <table class="attr">
+        <tr>
+            <th><%= "グループ名" %></th>
+            <td><%= @member.group %></td>
+        </tr>
+        <tr>
+            <th><%= form.label :"ステータス" %></th>
+            <td><%= form.select :status, *[2..4],method: :get %></td>
+        </tr>
+    </table>
+  <div><%= form.submit"更新"%></div>
+<% end %>

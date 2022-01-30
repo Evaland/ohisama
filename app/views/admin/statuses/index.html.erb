@@ -1,0 +1,29 @@
+<% @page_title = "配達ステータス管理" %>
+<h1><%= @page_title %></h1>
+
+<h2><%= "ステータス変更２以降" %></h2>
+
+<% if @orders.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>ユーザ</th>
+        <th>配達ステータス(1:注文済, 2:発送準備中, 3:発送中, 4:発送済)</th>
+        <th>グループ(1:A,2:B,3:C)</th>
+        <th>更新日時</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= Member.find_by(id: order.id).name %></td>
+          <td><%= order.status %></td>
+          <td><%= Member.find_by(id: order.id).group %></td>
+          <td><%= order.updated_at %></td>
+          <td><%= link_to "編集(未完成)", [:edit, :admin, ] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
