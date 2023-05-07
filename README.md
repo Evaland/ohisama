@@ -1,24 +1,11 @@
-# README
+# Web注文システム
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## ①開発目的：授業課題　ネットスーパー（フードロス）
+## ②開発期間：2021年10月〜1月
+## ③開発環境：使用言語（Ruby）、フレームワーク（Ruby on rails）
 
-Things you may want to cover:
+###　内容
+ユーザーはWeb注文システム「ohisama」よりスーパーの品物を注文することができます。
+まずは会員情報を登録します。その後注文したい商品をカートに入れます。商品自体は週一での発送となるため、管理者側でカートに入っている内容を確定し、購入という形になります。実際の決済はつけていないので、購入したら履歴が参照できるようになります。
+また、フードロスへの取り組みとして、お得セットという卵と牛乳がセットでお安くなった商品もあり、購入すると卵と牛乳単体の在庫が減ります。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
